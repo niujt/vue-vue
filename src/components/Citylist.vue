@@ -1,7 +1,10 @@
 <template>
  <el-container>
 <el-header>
-    <h1>城市信息表</h1>
+    <h1>城市信息表<el-button  type="primary" style="padding: 3px 4px 3px 4px;margin: 2px;float:right" size="mini"
+                           @click="add()">添加
+        </el-button>   </h1>
+    
 </el-header>
 <el-main>
    <el-table
@@ -57,6 +60,32 @@
         </div>
     </el-dialog>
      </el-form>
+     <el-form :model="city"  ref="addCityForm" style="margin: 0px;padding: 0px;">
+    <el-dialog title="添加城市" :visible.sync="showFlag2" style="width:1000px;height:800px;margin:0 auto">
+      <el-row>
+            <el-col :span="6">
+              <div>
+                <el-form-item label="name:" prop="name">
+                  <el-input prefix-icon="el-icon-edit" v-model="city.name" size="mini" style="width: 150px"
+                            placeholder="name"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+              <el-col :span="6">
+              <div>
+                <el-form-item label="state:" prop="state">
+                  <el-input prefix-icon="el-icon-edit" v-model="city.state" size="mini" style="width: 150px"
+                            placeholder="state"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>   
+      </el-row>
+       <div> 
+            <el-button @click="addcity('addCityForm')">添加</el-button>
+        </div>
+    </el-dialog>
+     </el-form>
+
  </el-container>
 </template>
 <script>
@@ -65,7 +94,8 @@ export default {
         return{
              tableDate:[],
              city:{id:'',name:'',state:''},
-             showFlag:false
+             showFlag:false,
+             showFlag2:false
            
         }
     },
@@ -116,6 +146,24 @@ export default {
                     _this.initData();
                     _this.showFlag=false;
                    }); 
+                }
+            });
+        },
+        //显示新增页面
+        add(){
+            this.showFlag2=true;
+        },
+        //新增城市
+        addcity(formname){
+              var _this=this;
+            this.$refs[formname].validate((valid) => {
+                if(valid){
+                    console.log(this.city);
+                    _this.$http.post('/api/city',this.city).then(response=>{
+                        console.log(response.data);
+                     _this.initData();
+                     _this.showFlag2=false;
+                    }); 
                 }
             });
         }
