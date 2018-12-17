@@ -19,19 +19,53 @@
                 </el-button>
                 <el-button type="danger" style="padding: 3px 4px 3px 4px;margin: 2px" size="mini"
                            @click="del(scope.row)">删除
-                </el-button>
+                </el-button>        
     </template>
     </el-table-column>
    </el-table> 
    </el-main>
+     <el-form :model="city"  ref="updateCityForm" style="margin: 0px;padding: 0px;">
+    <el-dialog title="城市详情" :visible.sync="showFlag" style="width:1000px;height:800px;margin:0 auto">
+      <el-row>
+            <el-col :span="6">
+              <div>
+                <el-form-item label="id:" prop="id">
+                  <el-input readonly prefix-icon="el-icon-edit" v-model="city.id" size="mini" style="width: 150px"
+                            placeholder="id"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+            <el-col :span="6">
+              <div>
+                <el-form-item label="name:" prop="name">
+                  <el-input prefix-icon="el-icon-edit" v-model="city.name" size="mini" style="width: 150px"
+                            placeholder="name"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>
+              <el-col :span="6">
+              <div>
+                <el-form-item label="state:" prop="state">
+                  <el-input prefix-icon="el-icon-edit" v-model="city.state" size="mini" style="width: 150px"
+                            placeholder="state"></el-input>
+                </el-form-item>
+              </div>
+            </el-col>   
+      </el-row>
+       <div> 
+            <el-button @click="updatecity('updateCityForm')">更新</el-button>
+        </div>
+    </el-dialog>
+     </el-form>
  </el-container>
 </template>
- 
 <script>
 export default {
     data(){
         return{
-             tableDate:[]
+             tableDate:[],
+             city:{id:'',name:'',state:''},
+             showFlag:false
            
         }
     },
@@ -53,9 +87,13 @@ export default {
         },
         //更新城市列表
         upd(row){
-              this.$http.get('/api/city/'+row.id).then(response => {
-              console.log(response.data);
-
+            this.$http.get('/api/city/'+row.id).then(response => {
+            //console.log(response.data);
+            this.city.id=response.data.city.id;
+            this.city.name=response.data.city.name;
+            this.city.state=response.data.city.state;
+           // console.log(this.city);
+            this.showFlag=true;
          }, response => {
              console.log("error");
          });
@@ -65,6 +103,20 @@ export default {
             this.$http.delete('/api/city/'+row.id).then(response=>{
                 console.log(response.data);
                 this.initData();
+            });
+        },
+        //保存
+        updatecity(formname){
+            //console.log(formname);
+            var _this=this;
+            this.$refs[formname].validate((valid) => {
+                if(valid){
+                   _this.$http.put('/api/city',this.city).then(response=>{
+                       console.log(response.data);
+                    _this.initData();
+                    _this.showFlag=false;
+                   }); 
+                }
             });
         }
       
