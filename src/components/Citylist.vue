@@ -8,7 +8,7 @@
 </el-header>
 <el-main>
    <el-table
-   order size="mini" fit highlight-current-row height="500" :data='tableDate'>
+   order size="mini" fit highlight-current-row height="500" :data='tableDate.slice((currentpage-1)*pagesize,currentpage*pagesize)'>
     <el-table-column label="id" prop='id'></el-table-column>
     <el-table-column label='name' prop='name'></el-table-column>
     <el-table-column label='state' prop='state'></el-table-column>
@@ -26,6 +26,15 @@
     </template>
     </el-table-column>
    </el-table> 
+   <el-pagination
+                     layout="prev, pager, next"
+                     @current-change="current_change"
+                     :total="citytotal"
+                     :current-page="currentpage"
+                     :page-size="pagesize" 
+                     background
+                    >
+   </el-pagination>
    </el-main>
      <el-form :model="city"  ref="updateCityForm" style="margin: 0px;padding: 0px;">
     <el-dialog title="城市详情" :visible.sync="showFlag" style="width:1000px;height:800px;margin:0 auto">
@@ -92,10 +101,13 @@
 export default {
     data(){
         return{
-             tableDate:[],
-             city:{id:'',name:'',state:''},
-             showFlag:false,
-             showFlag2:false
+            tableDate:[],
+            city:{id:'',name:'',state:''},
+            showFlag:false,
+            showFlag2:false,
+            citytotal:0,
+            pagesize:5,
+            currentpage:1
            
         }
     },
@@ -109,6 +121,7 @@ export default {
              this.$http.get('/api/city').then(response => {
               console.log(response.data);
              this.tableDate=response.data.citys;
+             this.citytotal=response.data.count;
              this.someData = response.body;
 
          }, response => {
@@ -166,8 +179,13 @@ export default {
                     }); 
                 }
             });
-        }
-      
+        
+        },
+        //分页
+        current_change(currentpage){
+         this.currentpage=currentpage;
+        
+    }
     }
    
 
