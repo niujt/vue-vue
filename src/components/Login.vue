@@ -47,7 +47,10 @@ export default {
                     _this.$http.get('/api/login?username='+this.login.username+"&password="+this.login.password).then(response=>{
                         console.log(response.data);
                         if(response.data.LoginStatus=='success'){
-                             this.$router.push({name: 'index'});
+                             this.$router.push({name: 'index',params:{
+                            username: _this.login.username
+                        }
+                        });
                         }
                         else{
                             this.message=response.data.LoginStatus;
@@ -61,7 +64,7 @@ export default {
         //注册
         onRejest(){
             this.$router.push({  //核心语句
-        path:'/regist',   //跳转的路径
+            path:'/regist',   //跳转的路径
             });
         },
         //密码显示隐藏
