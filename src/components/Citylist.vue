@@ -1,7 +1,12 @@
 <template>
  <el-container>
 <el-header>
-    <h1>城市信息表<el-button  type="primary" style="padding: 3px 4px 3px 4px;margin: 2px;float:right" size="mini"
+    <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <router-link to="/index" style="float:left;text-decoration:none" class="el-icon-back">
+         
+        </router-link>
+        城市信息表
+        <el-button  type="primary" style="padding: 3px 4px 3px 4px;margin: 2px;float:right" size="mini"
                            @click="add()">添加
         </el-button>   </h1>
     
@@ -27,12 +32,12 @@
     </el-table-column>
    </el-table> 
    <el-pagination
-                     layout="prev, pager, next"
-                     @current-change="current_change"
-                     :total="citytotal"
-                     :current-page="currentpage"
-                     :page-size="pagesize" 
-                     background
+        layout="prev, pager, next"
+        @current-change="current_change"
+        :total="citytotal"
+        :current-page="currentpage"
+        :page-size="pagesize" 
+        background
                     >
    </el-pagination>
    </el-main>

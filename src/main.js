@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import '../static/css/index.css'
 Vue.config.productionTip = false
 Vue.use(Element,{size: 'small', zIndex: 3000})
 /* eslint-disable no-new */
