@@ -4,6 +4,7 @@ import Index from '@/components/index'
 import Citylist from '@/components/Citylist'
 import Userlist from '@/components/Userlist'
 import Login from '@/components/Login'
+import Regist from '@/components/regist'
 import VueResource from 'vue-resource'
 Vue.use(VueResource);
 Vue.use(Router)
@@ -29,6 +30,11 @@ export default new Router({
       path: '/user',
       name:'Userlist',
       component: Userlist
+    },
+    {
+      path:'/regist',
+      name:'regist',
+      component: Regist
     }
   ]
 })

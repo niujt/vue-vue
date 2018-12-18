@@ -74,8 +74,8 @@
         </div>
     </el-dialog>
      </el-form>
-     <el-form :model="city"  ref="addCityForm" style="margin: 0px;padding: 0px;">
-    <el-dialog title="添加城市" :visible.sync="showFlag2" style="width:1000px;height:800px;margin:0 auto">
+     <el-form :model="city" :rules="rules"  ref="addCityForm" style="margin: 0px;padding: 0px;">
+    <el-dialog title="添加城市"  :visible.sync="showFlag2" style="width:1000px;height:800px;margin:0 auto">
       <el-row>
             <el-col :span="6">
               <div>
@@ -112,7 +112,17 @@ export default {
             showFlag2:false,
             citytotal:0,
             pagesize:5,
-            currentpage:1
+            currentpage:1,
+            rules:{
+                name:[  
+                        { required: true, message: '请输入省份', trigger: 'blur' },
+                        { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                    ],
+                state:[
+                        { required: true, message: '请输入城市', trigger: 'blur' },
+                        { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                    ]
+            }
            
         }
     },
