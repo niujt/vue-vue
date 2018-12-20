@@ -24,8 +24,8 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ######  登陆
 ![Image text](/static/imgs/4.png)      
 ######  城市列表    
-![Image text](/static/5.png)      
+![Image text](/static/imgs/5.png)      
 ######  城市详情    
-![Image text](/static/6.png)      
+![Image text](/static/imgs/6.png)      
 ######  添加城市    
-![Image text](/static/7.png)      
+![Image text](/static/imgs/7.png)      
