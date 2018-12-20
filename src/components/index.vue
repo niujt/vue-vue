@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>{{ msg }}  <el-button type="primary" style="float:right" @click="loginout()">loginout</el-button></h1>
     <h2>用户：{{userName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;欢迎！！！</h2>
     <el-carousel :interval="5000" arrow="always">
     <el-carousel-item>
@@ -40,6 +40,18 @@ export default {
   },
   mounted:function(){
     this.userName=this.$route.params.username;
+  },
+  methods:{
+    loginout(){
+       this.$http.get('/api/loginout').then(response => {
+              console.log(response.data.LoginStatus);
+               this.$router.push({  //核心语句
+            path:'/',   //跳转的路径
+            });
+         }, response => {
+             console.log("error");
+         });
+    }
   }
 }
 </script>
