@@ -1,32 +1,19 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}  <el-button type="primary" style="float:right" @click="loginout()">loginout</el-button></h1>
-    <h2>用户：{{userName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;欢迎！！！</h2>
-    <el-carousel :interval="5000" arrow="always">
-    <el-carousel-item>
-        <router-link to="user" style="text-decoration:none;font-size:40px" >
-          用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;户<br>信&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;息
-        </router-link>
-    </el-carousel-item>
-    <el-carousel-item >
-         <router-link to="city" style="text-decoration:none;font-size:40px">
-          城&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;市<br>信&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;息
-        </router-link>
-    </el-carousel-item>
-  </el-carousel>
-    <!-- <ul>
-      <li>
-       <router-link to="user" style="text-decoration:none">
-          用户信息
-        </router-link>
-      </li>
-      <li>
-       <router-link to="city" style="text-decoration:none">
-          城市信息
-        </router-link>
-      </li>
-    </ul> -->
-  </div>
+<el-container>
+  <el-header width="400px">
+   
+     <el-breadcrumb separator="/">
+      <el-breadcrumb-item :to="{ path: 'user' }">用户信息</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: 'city' }">城市信息</el-breadcrumb-item>
+</el-breadcrumb>
+ <el-button type="primary" style="float:right" @click="loginout()">loginout</el-button>
+  </el-header>
+      <el-main>
+         <h1>{{ msg }} </h1>
+     <h2>用户：{{userName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;欢迎！！！</h2>
+      </el-main>
+      <el-footer>author @jtniu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系我</el-footer>
+</el-container>
 </template>
 
 <script>

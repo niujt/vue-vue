@@ -16,6 +16,7 @@
         <el-form-item>
             <el-button type="primary" @click="onSubmit('loginform')">登录</el-button>
             <el-button type="primary" @click="onRejest">注册</el-button>
+            <router-link :to="{path:'/updatepwd'}" style="text-decoration:none;float:right">?&nbsp;忘记密码</router-link>
         </el-form-item>
      </el-form>
     </div>

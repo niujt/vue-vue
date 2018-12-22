@@ -13,7 +13,7 @@
 </el-header>
 <el-main>
    <el-table
-   order size="mini" fit highlight-current-row height="500" :data='tableDate.slice((currentpage-1)*pagesize,currentpage*pagesize)'>
+   order size="mini" fit highlight-current-row height="340" :data='tableDate.slice((currentpage-1)*pagesize,currentpage*pagesize)'>
     <el-table-column label="id" prop='id'></el-table-column>
     <el-table-column label='name' prop='name'></el-table-column>
     <el-table-column label='state' prop='state'></el-table-column>

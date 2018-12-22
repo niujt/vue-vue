@@ -13,7 +13,9 @@
     <el-table-column label="id" prop='id'></el-table-column>
     <el-table-column label='name' prop='name'></el-table-column>
     <el-table-column label='age' prop='age'></el-table-column>
-    <el-table-column label='salary' prop='salary'></el-table-column>
+    <el-table-column label='sex' prop='sex'></el-table-column>
+     <el-table-column label='phone' prop='phone'></el-table-column>
+    <el-table-column label='salary(单位元)' prop='salary'></el-table-column>
     <el-table-column label='address' prop='address'></el-table-column>
     <el-table-column
               fixed="right"
@@ -34,12 +36,22 @@ export default {
     mounted:function() {
         this.initData();
     },
-
     methods:{
         initData(){
         this.$http.get('/api/user').then(response => {
               console.log(response.data.users);
              this.tableDate=response.data.users;
+             console.log( this.tableDate);
+             this.tableDate.forEach(item=>{
+                 if(item.sex==0){
+                     item.sex='女';
+                 }
+                 else{
+                     item.sex='男';
+                 }
+             })
+             
+            
          }, response => {
              console.log("error");
          });
