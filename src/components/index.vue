@@ -1,7 +1,7 @@
 <template>
 <el-container>
   <el-header width="400px">
-   时间：{{realdate}}
+   <h5 style="float:right">{{realdate}}</h5>
      <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: 'user' }">用户信息</el-breadcrumb-item>
       <el-breadcrumb-item :to="{ path: 'city' }">城市信息</el-breadcrumb-item>
@@ -9,7 +9,7 @@
  <el-button type="primary" style="float:right" @click="loginout()">loginout</el-button>
   </el-header>
       <el-main>
-     <h2><img :src="headurl" style="wdith:100px;height:100px;float:left"> 欢迎！！！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户：XXXXX </h2>
+     <h2><img :src="headurl" style="wdith:80px;height:80px;border-radius:50px"> welcome！！！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户：{{userName}} {{id}} </h2>
       <el-tabs type="border-card" style='width:1000px;margin:0 auto'>
       <el-tab-pane label="基本资料" >
         <!--基本资料  :model="user"-->
@@ -60,7 +60,7 @@
         <!--头像设置-->
       </el-tab-pane>
       <el-tab-pane label="教育经历">
-        <el-form ref="infoform"  label-width="150px">
+        <el-form ref="infoform"   label-width="150px">
           <el-form-item label="小学" style='width:400px'>
               <el-input ></el-input>
           </el-form-item>
@@ -100,13 +100,24 @@ export default {
       imageUrl: '',
       realdate:'',
       headurl:require("../assets/1546146191588.jpg")
-    }
+      }
   },
   mounted:function(){
   this.showDate();
    setInterval(this.showDate,1000);
+   this.initDate();
   },
   methods:{
+    initDate(){
+        this.$http.get('/api/logininfo').then(response => {
+          console.log(response.data.logininfo)
+              var logindate=response.data.logininfo;
+             this.userName=logindate.username;
+            this.id=logindate.userid;
+         }, response => {
+             console.log("error");
+         });
+    },
     loginout(){
        this.$http.get('/api/loginout').then(response => {
               console.log(response.data.LoginStatus);
