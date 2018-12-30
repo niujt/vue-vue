@@ -21,6 +21,14 @@
               fixed="right"
               label="操作"
               width="195">
+              <template slot-scope="scope">
+                <el-button @click="upd(scope.row)" style="padding: 3px 4px 3px 4px;margin: 2px"
+                           size="mini">编辑
+                </el-button>
+                <el-button type="danger" style="padding: 3px 4px 3px 4px;margin: 2px" size="mini"
+                           @click="del(scope.row)">删除
+                </el-button>        
+    </template>
     </el-table-column>
    </el-table> 
 </el-main>
@@ -55,7 +63,14 @@ export default {
          }, response => {
              console.log("error");
          });
-        }    
+        } ,
+        upd(row){
+            console.log(row.id);
+        },
+        del(row){
+            console.log(row.id);
+        }  
+
         }
 
 }

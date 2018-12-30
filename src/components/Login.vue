@@ -48,16 +48,11 @@ export default {
                     _this.$http.get('/api/login?username='+this.login.username+"&password="+this.login.password).then(response=>{
                         console.log(response.data);
                         if(response.data.LoginStatus=='success'){
-                             this.$router.push({name: 'index',params:{
-                            username: _this.login.username
-                        }
-                        });
+                             this.$router.push({name: 'index'});
                         }
                         else{
-                            this.message=response.data.LoginStatus;
-                            // this.$router.push({name: 'login'});
+                            this.message=response.data.LoginStatus;  
                         }
-                       //,params:{name:this.login.username}
                     }); 
                   }
              });
@@ -73,6 +68,9 @@ export default {
             var pwd=document.getElementById("password");
             if(flag=='password'){
                 pwd.setAttribute("type","text");
+            }
+            else if(flag=='text'){
+                 pwd.setAttribute("type","text");
             }
             
         }

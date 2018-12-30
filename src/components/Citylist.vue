@@ -14,7 +14,8 @@
 <el-main>
    <el-table
    order size="mini" fit highlight-current-row height="340" :data='tableDate.slice((currentpage-1)*pagesize,currentpage*pagesize)'>
-    <el-table-column label="id" prop='id'></el-table-column>
+    <el-table-column type="index" label="序号"></el-table-column>
+    <el-table-column label="id" prop='id' v-if='false'></el-table-column>
     <el-table-column label='name' prop='name'></el-table-column>
     <el-table-column label='state' prop='state'></el-table-column>
     <el-table-column
@@ -116,11 +117,11 @@ export default {
             rules:{
                 name:[  
                         { required: true, message: '请输入省份', trigger: 'blur' },
-                        { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                        { min: 1, max: 5, message: '长度在 1 到 5 个字符', trigger: 'blur' }
                     ],
                 state:[
                         { required: true, message: '请输入城市', trigger: 'blur' },
-                        { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                        { min: 1, max: 5, message: '长度在 1 到 5 个字符', trigger: 'blur' }
                     ]
             }
            
@@ -158,10 +159,29 @@ export default {
         },
         //删除选中城市
         del(row){
+            this.$confirm('此操作将永久删除该信息, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
             this.$http.delete('/api/city/'+row.id).then(response=>{
                 console.log(response.data);
                 this.initData();
             });
+            this.$message({
+            type: 'success',
+            message: '删除成功!'
+          });
+        }).catch(() => {
+            this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });          
+        });
+
+
+
+           
         },
         //保存
         updatecity(formname){
