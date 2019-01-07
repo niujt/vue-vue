@@ -69,9 +69,6 @@ export default {
             if(flag=='password'){
                 pwd.setAttribute("type","text");
             }
-            else if(flag=='text'){
-                 pwd.setAttribute("type","text");
-            }
             
         }
     }
