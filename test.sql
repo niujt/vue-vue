@@ -11,7 +11,7 @@
  Target Server Version : 50712
  File Encoding         : 65001
 
- Date: 30/12/2018 16:59:42
+ Date: 07/01/2019 01:33:57
 */
 
 SET NAMES utf8mb4;
@@ -26,7 +26,7 @@ CREATE TABLE `city`  (
   `cityname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '市',
   `provinceid` int(11) NULL DEFAULT NULL COMMENT '省id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of city
@@ -37,7 +37,8 @@ INSERT INTO `city` VALUES (3, '无锡', 1);
 INSERT INTO `city` VALUES (4, '徐汇区', 2);
 INSERT INTO `city` VALUES (5, '三环', 3);
 INSERT INTO `city` VALUES (8, '淮安', 1);
-INSERT INTO `city` VALUES (10, '盐城', 1);
+INSERT INTO `city` VALUES (12, '盐城', 1);
+INSERT INTO `city` VALUES (13, '宿迁', 1);
 
 -- ----------------------------
 -- Table structure for dept
@@ -47,7 +48,7 @@ CREATE TABLE `dept`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `department` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '部门',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of dept
@@ -64,18 +65,18 @@ DROP TABLE IF EXISTS `login`;
 CREATE TABLE `login`  (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `userid` int(11) NULL DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '123456',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of login
 -- ----------------------------
-INSERT INTO `login` VALUES (1, 'xiaoming', '123456', 1);
-INSERT INTO `login` VALUES (2, 'xiaohong', '123456', 2);
-INSERT INTO `login` VALUES (3, 'xiaogang', '123456', 3);
-INSERT INTO `login` VALUES (4, 'xiaozhao', '123456', NULL);
+INSERT INTO `login` VALUES (1, 'xiaoming', 'e10adc3949ba59abbe56e057f20f883e');
+INSERT INTO `login` VALUES (2, 'xiaohong', 'e10adc3949ba59abbe56e057f20f883e');
+INSERT INTO `login` VALUES (3, 'xiaogang', 'e10adc3949ba59abbe56e057f20f883e');
+INSERT INTO `login` VALUES (4, 'xiaozhao', 'e10adc3949ba59abbe56e057f20f883e');
+INSERT INTO `login` VALUES (5, 'xiaoqian', 'e10adc3949ba59abbe56e057f20f883e');
 
 -- ----------------------------
 -- Table structure for position
@@ -91,26 +92,26 @@ CREATE TABLE `position`  (
 -- ----------------------------
 -- Records of position
 -- ----------------------------
-INSERT INTO `position` VALUES (1, '行政', NULL);
-INSERT INTO `position` VALUES (2, '后勤', NULL);
-INSERT INTO `position` VALUES (3, '行政总监行政经理', NULL);
-INSERT INTO `position` VALUES (4, '主管', NULL);
-INSERT INTO `position` VALUES (5, '办公室主任', NULL);
-INSERT INTO `position` VALUES (6, '行政专员', NULL);
-INSERT INTO `position` VALUES (7, '助理', NULL);
-INSERT INTO `position` VALUES (8, '统计员', NULL);
-INSERT INTO `position` VALUES (9, '税务经理', NULL);
-INSERT INTO `position` VALUES (10, '主管', NULL);
-INSERT INTO `position` VALUES (11, '税务专员', NULL);
-INSERT INTO `position` VALUES (12, '助理', NULL);
-INSERT INTO `position` VALUES (13, '质量检验员', NULL);
-INSERT INTO `position` VALUES (14, '测试员', NULL);
-INSERT INTO `position` VALUES (15, '认证工程师', NULL);
-INSERT INTO `position` VALUES (16, '审核员', NULL);
-INSERT INTO `position` VALUES (17, '供应商', NULL);
-INSERT INTO `position` VALUES (18, '采购设备与材料质量管理', NULL);
-INSERT INTO `position` VALUES (19, '销售总监', NULL);
-INSERT INTO `position` VALUES (20, '区域销售经理', NULL);
+INSERT INTO `position` VALUES (1, '行政', 1);
+INSERT INTO `position` VALUES (2, '后勤', 1);
+INSERT INTO `position` VALUES (3, '行政总监行政经理', 1);
+INSERT INTO `position` VALUES (4, '主管', 1);
+INSERT INTO `position` VALUES (5, '办公室主任', 1);
+INSERT INTO `position` VALUES (6, '行政专员', 1);
+INSERT INTO `position` VALUES (7, '助理', 1);
+INSERT INTO `position` VALUES (8, '统计员', 2);
+INSERT INTO `position` VALUES (9, '税务经理', 2);
+INSERT INTO `position` VALUES (10, '主管', 2);
+INSERT INTO `position` VALUES (11, '税务专员', 2);
+INSERT INTO `position` VALUES (12, '助理', 2);
+INSERT INTO `position` VALUES (13, '质量检验员', 3);
+INSERT INTO `position` VALUES (14, '测试员', 3);
+INSERT INTO `position` VALUES (15, '认证工程师', 3);
+INSERT INTO `position` VALUES (16, '审核员', 3);
+INSERT INTO `position` VALUES (17, '供应商', 3);
+INSERT INTO `position` VALUES (18, '采购设备与材料质量管理', 3);
+INSERT INTO `position` VALUES (19, '销售总监', 2);
+INSERT INTO `position` VALUES (20, '区域销售经理', 4);
 
 -- ----------------------------
 -- Table structure for province
@@ -120,7 +121,7 @@ CREATE TABLE `province`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `provincename` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '省',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of province
@@ -129,6 +130,14 @@ INSERT INTO `province` VALUES (1, '江苏');
 INSERT INTO `province` VALUES (2, '上海');
 INSERT INTO `province` VALUES (3, '北京');
 INSERT INTO `province` VALUES (4, '浙江');
+INSERT INTO `province` VALUES (5, '北京');
+INSERT INTO `province` VALUES (6, '广东');
+INSERT INTO `province` VALUES (7, '福建');
+INSERT INTO `province` VALUES (8, '江西');
+INSERT INTO `province` VALUES (9, '安徽');
+INSERT INTO `province` VALUES (10, '新疆');
+INSERT INTO `province` VALUES (11, '内蒙古');
+INSERT INTO `province` VALUES (12, '青海');
 
 -- ----------------------------
 -- Table structure for user
@@ -136,6 +145,7 @@ INSERT INTO `province` VALUES (4, '浙江');
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
   `id` int(255) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `loginid` int(11) NULL DEFAULT NULL COMMENT '登录id',
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '名字',
   `iconhead` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '头像',
   `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮箱',
@@ -157,8 +167,34 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, '王小明', '', '670482466@qq.com', '18115530702', 1, 18, 3000.00, 'asgdha小学', '奥数短时中学', '苏亲爱高中', '清华大学', 0, 1, '1', '2018-12-20 19:39:05');
-INSERT INTO `user` VALUES (2, '张小红', NULL, 'fghj@163.com', '18115540702', 0, 22, 3500.00, 'asdfa小学', '大是大非中学', '啊实打实打算高中', '北京大学', 0, 1, '2', '2018-12-20 19:39:07');
-INSERT INTO `user` VALUES (3, '瞿小刚', NULL, 'asdhaj@hotmail.com', '18115550702', 1, 34, 4000.00, 'd大苏打小学', '归还借款中学', '大苏打撒旦高中', '厦门大学', 1, NULL, '3', '2018-12-20 19:39:13');
+INSERT INTO `user` VALUES (1, 1, '王小明', '', '670482466@qq.com', '18115530702', 1, 18, 3000.00, 'asgdha小学', '奥数短时中学', '苏亲爱高中', '清华大学', 0, 1, '1', '2018-12-20 19:39:05');
+INSERT INTO `user` VALUES (2, 2, '张小红', NULL, 'fghj@163.com', '18115540702', 2, 22, 3500.00, 'asdfa小学', '大是大非中学', '啊实打实打算高中', '北京大学', 0, 1, '2', '2018-12-20 19:39:07');
+INSERT INTO `user` VALUES (3, 3, '瞿小刚', NULL, 'asdhaj@hotmail.com', '18115550702', 1, 34, 4000.00, 'd大苏打小学', '归还借款中学', '大苏打撒旦高中', '厦门大学', 1, 2, '3', '2018-12-20 19:39:13');
+
+-- ----------------------------
+-- Function structure for getAddress
+-- ----------------------------
+DROP FUNCTION IF EXISTS `getAddress`;
+delimiter ;;
+CREATE DEFINER=`njt123`@`%` FUNCTION `getAddress`(pid int(10)) RETURNS varchar(40) CHARSET utf8
+BEGIN
+	
+	RETURN (select concat(p.provincename,c.cityname) from city c,province p where c.provinceid=p.id and c.id=pid);
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Function structure for getDeptPosition
+-- ----------------------------
+DROP FUNCTION IF EXISTS `getDeptPosition`;
+delimiter ;;
+CREATE DEFINER=`njt123`@`%` FUNCTION `getDeptPosition`(pid int(10)) RETURNS varchar(40) CHARSET utf8
+BEGIN
+
+	RETURN (select concat(d.department,p.postionname) from dept d,position p where d.id=p.deptid and p.id=pid);
+END
+;;
+delimiter ;
 
 SET FOREIGN_KEY_CHECKS = 1;
