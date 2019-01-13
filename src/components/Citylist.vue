@@ -1,23 +1,23 @@
 <template>
  <el-container>
 <el-header>
-    <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <router-link to="/index" style="float:left;text-decoration:none" class="el-icon-back">
-         
-        </router-link>
+    <Menu></Menu>   
+    <h1>
         城市信息表&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:10px">共{{citytotal}}条记录</span>
-        <el-button  type="primary" style="padding: 3px 4px 3px 4px;margin: 2px;float:right" size="mini"
-                           @click="add()">添加
-        </el-button>   </h1>
-    
+         </h1>
+ 
 </el-header>
 <el-main>
+        <el-button  type="primary" style="padding: 3px 4px 3px 4px;margin: 2px;float:right" size="mini"
+                           @click="add()">添加
+        </el-button>  
+    <div style="width:1560px;float:right">
    <el-table
    order size="mini" fit highlight-current-row height="340" :data='tableDate.slice((currentpage-1)*pagesize,currentpage*pagesize)'>
     <el-table-column type="index" label="序号"></el-table-column>
-    <el-table-column label="id" prop='id' v-if='false'></el-table-column>
-    <el-table-column label='省(或者直辖市)' prop='provincename'></el-table-column>
-    <el-table-column label='市（区）' prop='cityname'></el-table-column>
+    <el-table-column label="id" prop='id' v-if='false' sortable></el-table-column>
+    <el-table-column label='省(或者直辖市)' prop='provincename' sortable></el-table-column>
+    <el-table-column label='市（区）' prop='cityname' sortable></el-table-column>
     <el-table-column
               fixed="right"
               label="操作"
@@ -41,6 +41,7 @@
         background
                     >
    </el-pagination>
+    </div>
    </el-main>
      <el-form :model="city"  ref="updateCityForm" style="margin: 0px;padding: 0px;">
     <el-dialog title="城市详情" :visible.sync="showFlag" width="60%"  style="margin:0 auto">
@@ -102,6 +103,7 @@
  </el-container>
 </template>
 <script>
+import Menu from '@/components/menu';
 export default {
     data(){
         return{
@@ -231,7 +233,10 @@ export default {
              console.log("error");
          });
     }
-    }
+    },
+    components:{
+    'Menu':Menu
+  }
    
 
 }

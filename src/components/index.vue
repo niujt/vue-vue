@@ -1,14 +1,10 @@
 <template>
 <el-container>
   <el-header width="400px">
-   <h5 style="float:right">{{realdate}}</h5>
-     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: 'user' }">用户信息</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{ path: 'city' }">城市信息</el-breadcrumb-item>
-    </el-breadcrumb>
- <el-button type="primary" style="float:right" @click="loginout()">loginout</el-button>
+    <Menu></Menu>
   </el-header>
       <el-main>
+        <div style="width:1600px;float:right">
      <h2><img :src="headurl" style="wdith:80px;height:80px;border-radius:50px"> welcome！！！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户：{{userName}} </h2>
       <el-tabs type="border-card" style='width:1000px;margin:0 auto'>
       <el-tab-pane label="基本资料" >
@@ -86,29 +82,26 @@
         </el-form>
       </el-tab-pane>
 </el-tabs>
+        </div>
       </el-main>
       <el-footer>author @jtniu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系我</el-footer>
 </el-container>
 </template>
-
 <script>
+import Menu from '@/components/menu';
 export default {
   data () {
     return {
       userName:'',
       imageUrl: '',
-      realdate:'',
       headurl:require("../assets/1546146191588.jpg"),
       user:{id:'',name:'',phone:'',deptposition:'',sex:"",address:'',age:'',education1:'',education1:'',education2:'',education3:'',education4:''},
       sex:"1",
-      ishigheducation:'0'
+      ishigheducation:'0',
       }
   },
   mounted:function(){
-  this.showDate();
-   setInterval(this.showDate,1000);
     this.initDate();
-
   },
   methods:{
     //初始化
@@ -150,12 +143,6 @@ export default {
         }
         return isJPG && isLt2M;
       },
-      //显示日期
-      showDate(){
-        var date=new Date();
-        this.realdate=date.getFullYear()+"年"+(date.getMonth()+1)+"月"+date.getDate()+"日"+
-        "    "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
-      },
       //显示登录账号的用户信息
       showUserByLoginid(id){
            this.$http.get('/api/user1/'+id).then(response => {
@@ -167,6 +154,9 @@ export default {
          });
       }
 
+  },
+  components:{
+    'Menu':Menu
   }
 }
 </script>

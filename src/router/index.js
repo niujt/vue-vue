@@ -7,6 +7,7 @@ import Login from '@/components/Login'
 import Regist from '@/components/regist'
 import updatepwd from '@/components/updatepwd'
 import VueResource from 'vue-resource'
+
 Vue.use(VueResource);
 Vue.use(Router)
 

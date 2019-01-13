@@ -1,13 +1,11 @@
 <template>
     <el-container>
 <el-header>
-    <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <router-link to="/index" style="float:left;text-decoration:none" class="el-icon-back">
-        </router-link>
-        用户信息
-    </h1>
+        <Menu></Menu>   
+    <h1>用户信息</h1>
 </el-header>
 <el-main>
+    <div style="width:1560px;float:right">
    <el-table
    order size="mini" fit highlight-current-row height="500" :data='tableDate'>
     <el-table-column type="index" label="序号" fixed sortable></el-table-column>
@@ -15,17 +13,17 @@
     <el-table-column label='姓名' prop='name' sortable></el-table-column>
     <el-table-column label='年龄' prop='age' sortable></el-table-column>
     <el-table-column label='性别' prop='sex' sortable></el-table-column>
-    <el-table-column label='邮箱' prop='email' width="200px" sortable></el-table-column>
-    <el-table-column label='手机号' prop='phone'></el-table-column>
-    <el-table-column label='小学学历' prop='education1' show-overflow-tooltip sortable></el-table-column>
-    <el-table-column label='初中学历' prop='education2' show-overflow-tooltip sortable></el-table-column>
-    <el-table-column label='高中学历' prop='education3' show-overflow-tooltip sortable></el-table-column>
-    <el-table-column label='大学学历' prop='education4' show-overflow-tooltip sortable></el-table-column>
+    <el-table-column label='邮箱' prop='email' width="150px" sortable></el-table-column>
+    <el-table-column label='手机号' prop='phone' width="150px"></el-table-column>
+    <el-table-column label='小学学历' prop='education1' show-overflow-tooltip ></el-table-column>
+    <el-table-column label='初中学历' prop='education2' show-overflow-tooltip ></el-table-column>
+    <el-table-column label='高中学历' prop='education3' show-overflow-tooltip ></el-table-column>
+    <el-table-column label='大学学历' prop='education4' show-overflow-tooltip ></el-table-column>
     <el-table-column label='是否研究生及以上' prop='ishigheducation' width="200px" sortable></el-table-column>
      <el-table-column label='部门职位' prop='deptposition' show-overflow-tooltip></el-table-column>
     <el-table-column label='月薪(元)' prop='salary' ></el-table-column>
     <el-table-column label='地址' prop='address' show-overflow-tooltip></el-table-column>
-     <el-table-column label='创建时间' prop='createtime'></el-table-column>
+     <el-table-column label='创建时间' prop='createtime' width="150px"></el-table-column>
     <el-table-column
               fixed="right"
               label="操作"
@@ -40,10 +38,12 @@
     </template>
     </el-table-column>
    </el-table> 
+    </div>
 </el-main>
 </el-container>
 </template>
 <script>
+import Menu from '@/components/menu';
 export default {
     data(){
         return{
@@ -87,7 +87,10 @@ export default {
             console.log(row.id);
         }  
 
-        }
+        },
+    components:{
+    'Menu':Menu
+  }
 
 }
 </script>
