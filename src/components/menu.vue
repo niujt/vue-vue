@@ -51,7 +51,18 @@ export default {
 
   },
     methods:{
-         //显示日期
+    //退出登录
+    loginout(){
+       this.$http.get('/api/loginout').then(response => {
+              console.log(response.data.LoginStatus);
+               this.$router.push({  //核心语句
+            path:'/',   //跳转的路径
+            });
+         }, response => {
+             console.log("error");
+         });
+    },
+      //显示日期
       showDate(){
         var date=new Date();
         this.realdate=date.getFullYear()+"年"+(date.getMonth()+1)+"月"+date.getDate()+"日"+
