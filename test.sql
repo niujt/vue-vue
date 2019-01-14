@@ -1,4 +1,4 @@
-/*
+﻿/*
  Navicat Premium Data Transfer
 
  Source Server         : MyDB
@@ -13,6 +13,7 @@
 
  Date: 07/01/2019 01:33:57
 */
+
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
