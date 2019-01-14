@@ -9,34 +9,41 @@
       <el-tabs type="border-card" style='width:1000px;margin:0 auto'>
       <el-tab-pane label="基本资料" >
         <!--基本资料  :model="user"-->
-        <el-form ref="infoform" :model="user" label-width="80px">
-          <el-form-item label="姓名" prop="name"  style='width:400px'>
+        <el-form ref="infoform1" :model="user" label-width="80px">
+          <el-form-item label="姓名：" prop="name"  style='width:400px'>
               <el-input v-model="user.name"></el-input>
+              <!--影藏loginid-->
+               <el-input v-model="user.loginid" v-show="false">{{loginid}}</el-input>
           </el-form-item>
-           <el-form-item label="手机" prop="phone"  style='width:400px'>
+           <el-form-item label="手机：" prop="phone"  style='width:400px'>
               <el-input v-model="user.phone"></el-input>
           </el-form-item>
-           <el-form-item label="年龄" prop="age"  style='width:400px'>
+           <el-form-item label="年龄：" prop="age"  style='width:400px'>
               <el-input v-model="user.age"></el-input>
           </el-form-item>
-           <el-form-item label="部门" prop="deptposition"  style='width:400px'>
+            <el-form-item label="邮箱：" prop="email"  style='width:400px'>
+              <el-input v-model="user.email"></el-input>
+          </el-form-item>
+           <el-form-item label="部门：" prop="deptposition"  style='width:400px'>
               <el-input v-model="user.deptposition"></el-input>
           </el-form-item>
-           <el-form-item label="职位" prop="deptposition"  style='width:400px'>
+           <el-form-item label="职位：" prop="deptposition"  style='width:400px'>
               <el-input v-model="user.deptposition"></el-input>
           </el-form-item>
-           <el-form-item label="性别" prop="sex" style='width:400px'>
-              <el-radio-group v-model="sex" style="float: left;margin-top:10px">
+           <el-form-item label="薪水：" prop="salary"  style='width:400px'>
+              <el-input v-model="user.salary"></el-input>
+          </el-form-item>
+           <el-form-item label="性别：" prop="sex" style='width:400px'>
+              <el-radio-group v-model="user.sex" style="float: left;margin-top:10px">
                   <el-radio label="1" >男</el-radio>
                   <el-radio label="2" >女</el-radio>
               </el-radio-group>
           </el-form-item>
-           <el-form-item label="地址" prop="address"  style='width:400px'>
+           <el-form-item label="地址：" prop="address"  style='width:400px'>
               <el-input v-model="user.address"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" >保存</el-button>
-            <el-button>更新</el-button>
+            <el-button type="primary" @click="up1('infoform1')">更新并保存</el-button>
           </el-form-item>
         </el-form>
         <!--基本资料-->
@@ -56,28 +63,29 @@
         <!--头像设置-->
       </el-tab-pane>
       <el-tab-pane label="教育经历">
-        <el-form ref="infoform" :model="user"  label-width="150px">
-          <el-form-item label="小学" prop="education1" style='width:400px'>
+        <el-form ref="infoform3" :model="user"  label-width="150px">
+          <el-form-item label="小学：" prop="education1" style='width:400px'>
+             <!--影藏loginid-->
+              <el-input v-model="user.loginid" v-show="false">{{loginid}}</el-input>
               <el-input v-model="user.education1" ></el-input>
           </el-form-item>
-           <el-form-item label="初中" prop="education2" style='width:400px'>
+           <el-form-item label="初中：" prop="education2" style='width:400px'>
               <el-input v-model="user.education2"></el-input>
           </el-form-item>
-           <el-form-item label="高中" prop="education3" style='width:400px'>
+           <el-form-item label="高中：" prop="education3" style='width:400px'>
               <el-input v-model="user.education3"></el-input>
           </el-form-item>
-           <el-form-item label="大学" prop="education4" style='width:400px'>
+           <el-form-item label="大学：" prop="education4" style='width:400px'>
               <el-input v-model="user.education4"></el-input>
           </el-form-item>
-           <el-form-item label="研究生及以上" prop="ishigheducation" style='width:400px'>
-              <el-radio-group v-model="ishigheducation" style="float: left;margin-top:10px">
+           <el-form-item label="研究生及以上：" prop="ishigheducation" style='width:400px'>
+              <el-radio-group v-model="user.ishigheducation" style="float: left;margin-top:10px">
                   <el-radio label="0" >是</el-radio>
                   <el-radio label="1" >不是</el-radio>
               </el-radio-group>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" >保存</el-button>
-            <el-button>更新</el-button>
+            <el-button type="primary" @click="up3('infoform3')">更新并保存</el-button>
           </el-form-item>
         </el-form>
       </el-tab-pane>
@@ -92,12 +100,11 @@ import Menu from '@/components/menu';
 export default {
   data () {
     return {
+      loginid:'',
       userName:'',
       imageUrl: '',
       headurl:require("../assets/1546146191588.jpg"),
-      user:{id:'',name:'',phone:'',deptposition:'',sex:"",address:'',age:'',education1:'',education1:'',education2:'',education3:'',education4:''},
-      sex:"1",
-      ishigheducation:'0',
+      user:{id:'',loginid:'',name:'',phone:'',email:'',deptposition:'',salary:'',sex:"",address:'',age:'',education1:'',education1:'',education2:'',education3:'',education4:'',ishigheducation:''},
       }
   },
   mounted:function(){
@@ -111,17 +118,7 @@ export default {
               var logindate=response.data.logininfo;
              this.userName=logindate.username;
              this.showUserByLoginid(logindate.id);
-         }, response => {
-             console.log("error");
-         });
-    },
-    //退出登录
-    loginout(){
-       this.$http.get('/api/loginout').then(response => {
-              console.log(response.data.LoginStatus);
-               this.$router.push({  //核心语句
-            path:'/',   //跳转的路径
-            });
+             this.loginid=logindate.id;
          }, response => {
              console.log("error");
          });
@@ -148,10 +145,35 @@ export default {
            this.$http.get('/api/user1/'+id).then(response => {
             //console.log(response.data);
             this.user=response.data.LoginUserStatus;
+            this.user.sex=this.user.sex+"";
+            this.user.ishigheducation= this.user.ishigheducation+"";
             console.log(this.user);
          }, response => {
              console.log("error");
          });
+      },
+      //更新基本信息
+      up1(formname){
+          var _this=this;
+            this.$refs[formname].validate((valid) => {
+                if(valid){
+                   _this.$http.put('/api/userup1',this.user).then(response=>{
+                       console.log(response.data);
+                       this.user=this.user;
+                   }); 
+                }
+            });
+      },
+      //更新学历
+      up3(formname){
+          var _this=this;
+          this.$refs[formname].validate((valid) => {
+            if(valid){
+                _this.$http.put('/api/userup3',this.user).then(response=>{
+                    console.log(response.data);
+                }); 
+            }
+        });
       }
 
   },
